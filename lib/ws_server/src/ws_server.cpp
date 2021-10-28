@@ -58,6 +58,7 @@ void handlingIncomingData(void *arg, uint8_t *data, size_t len) {
         // ESP_LOGI(TAG, "t:%d;r:%d;p:%d;y:%d", dt_t, dt_r, dt_p, dt_y);
 
         int dt_t = doc["dt"]["t"];
+        dt_t = map(dt_t, -100, 100, 0, 180);
         ESC.write(dt_t);
     } else {
         ESP_LOGI(TAG, "message split");
