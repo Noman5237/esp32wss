@@ -8,6 +8,7 @@
 #define ESPWSS_WS_SERVER_INTERNAL_H
 
 #include <Arduino.h>
+#include <ArduinoJson.h>
 #include <AsyncTCP.h>
 #include <ESPAsyncWebServer.h>
 

@@ -9,4 +9,6 @@
 
 static const char* TAG = "wss:main";
 
+#define SERIAL_BAUD_RATE 115200
+
 #endif  //ESPWSS_MAIN_INTERNAL_H
