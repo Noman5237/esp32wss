@@ -7,6 +7,8 @@
 #ifndef ESPWSS_MAIN_INTERNAL_H
 #define ESPWSS_MAIN_INTERNAL_H
 
+#include <sensor_data.h>
+
 static const char* TAG = "wss:main";
 
 #define SERIAL_BAUD_RATE 115200

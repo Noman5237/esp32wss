@@ -10,6 +10,7 @@
 #include <Arduino.h>
 #include <IPAddress.h>
 #include <WiFi.h>
+#include <utils.h>
 
 #include "../include/wifi_connect.h"
 
@@ -17,13 +18,13 @@
 
 static const char* TAG = "wss:wifi";
 
-#define CONFIG_WIFI_SSID "FearMe37"
-#define CONFIG_WIFI_PASSWORD "Noman@5237"
+#define CONFIG_WIFI_SSID "Chaos"
+#define CONFIG_WIFI_PASSWORD "Chaos5312"
 #define CONFIG_WIFI_MAXIMUM_RETRY 5
 #define CONFIG_WIFI_CONNECTION_RETRY_DELAY_MS 5000
 
-IPAddress CONFIG_WIFI_IP(192, 168, 0, 137);
-IPAddress CONFIG_WIFI_GATEWAY(192, 168, 0, 26);
+IPAddress CONFIG_WIFI_IP(192, 168, 137, 215);
+IPAddress CONFIG_WIFI_GATEWAY(192, 168, 137, 1);
 IPAddress CONFIG_WIFI_SUBNET(255, 255, 255, 0);
 
 #endif  //ESPWSS_WIFI_CONNECT_INTERNAL_H

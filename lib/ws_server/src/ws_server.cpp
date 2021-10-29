@@ -13,8 +13,6 @@ AsyncWebServer server(80);
 // Web socket
 AsyncWebSocket ws("/ws");
 
-Servo ESC;
-
 void ws_server_start() {
     ESP_LOGD(TAG, "adding ws event handler");
     ws.onEvent(ws_event_handler);
@@ -28,12 +26,6 @@ void ws_server_start() {
 
     ESP_LOGI(TAG, "ws server starting");
     server.begin();
-    ESP32PWM::allocateTimer(0);
-    ESP32PWM::allocateTimer(1);
-    ESP32PWM::allocateTimer(2);
-    ESP32PWM::allocateTimer(3);
-    ESC.setPeriodHertz(50);  // Standard 50hz servo
-    ESC.attach(15, 1000, 2000);
 }
 
 void handlingIncomingData(void *arg, uint8_t *data, size_t len) {
@@ -50,16 +42,13 @@ void handlingIncomingData(void *arg, uint8_t *data, size_t len) {
 
         // const char *svc = doc["svc"];  // "control"
 
-        // JsonObject dt = doc["dt"];
-        // int dt_t = dt["t"];  // 40
-        // int dt_r = dt["r"];  // 40
-        // int dt_p = dt["p"];  // 40
-        // int dt_y = dt["y"];  // 40
+        JsonObject dt = doc["dt"];
+        int dt_t = dt["t"];  // 40
+        int dt_r = dt["r"];  // 40
+        int dt_p = dt["p"];  // 40
+        int dt_y = dt["y"];  // 40
         // ESP_LOGI(TAG, "t:%d;r:%d;p:%d;y:%d", dt_t, dt_r, dt_p, dt_y);
-
-        int dt_t = doc["dt"]["t"];
-        dt_t = map(dt_t, -100, 100, 0, 180);
-        ESC.write(dt_t);
+        motor_input_send();
     } else {
         ESP_LOGI(TAG, "message split");
     }

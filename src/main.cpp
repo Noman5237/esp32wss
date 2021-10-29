@@ -18,6 +18,11 @@ void setup() {
 
 	ESP_LOGD(TAG, "ws server start called");
 	ws_server_start();
+
+    ESP_LOGD(TAG, "setting up sensors");
+    sensor_data_setup();
+    ESP_LOGD(TAG, "calibrating sensor input");
+    sensor_data_calibrate();
 }
 
 void loop() {

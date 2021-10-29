@@ -25,6 +25,8 @@ void wifi_connect_station() {
     }
 
     if (wifi_status == WL_CONNECTED) {
-        ESP_LOGI(TAG, "connected to wifi with ip: %s", IPADDR2CSTR(WiFi.localIP()));
+        ESP_LOGI(TAG, "connected to wifi with ip: %s, gateway: %s, subnet: %s", IPADDR2CSTR(WiFi.localIP()), IPADDR2CSTR(WiFi.gatewayIP()), IPADDR2CSTR(WiFi.subnetMask()));
+    } else {
+        utils_suspend();
     }
 }

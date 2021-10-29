@@ -11,6 +11,7 @@
 #include <ArduinoJson.h>
 #include <AsyncTCP.h>
 #include <ESPAsyncWebServer.h>
+#include <motor_input.h>
 
 #include "../include/ws_server.h"
 
