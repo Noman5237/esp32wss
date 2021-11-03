@@ -4,8 +4,6 @@
  * @date: 28/10/2021; 02:11
  */
 
-#include <ESP32Servo.h>
-
 #include "ws_server_internal.h"
 
 // Web server running on port 80
@@ -43,12 +41,10 @@ void handlingIncomingData(void *arg, uint8_t *data, size_t len) {
         // const char *svc = doc["svc"];  // "control"
 
         JsonObject dt = doc["dt"];
-        int dt_t = dt["t"];  // 40
-        int dt_r = dt["r"];  // 40
-        int dt_p = dt["p"];  // 40
-        int dt_y = dt["y"];  // 40
-        // ESP_LOGI(TAG, "t:%d;r:%d;p:%d;y:%d", dt_t, dt_r, dt_p, dt_y);
-        motor_input_send();
+        ws_server_fc_input[THRUST] = dt["t"];  // 40
+        ws_server_fc_input[ROLL] = dt["r"];  // 40
+        ws_server_fc_input[PITCH] = dt["p"];  // 40
+        ws_server_fc_input[YAW] = dt["y"];  // 40
     } else {
         ESP_LOGI(TAG, "message split");
     }
@@ -73,4 +69,11 @@ void ws_event_handler(AsyncWebSocket *server, AsyncWebSocketClient *client, AwsE
             ESP_LOGI(TAG, "Error:\n\tClient id:%u\n", client->id());
             break;
     }
+}
+
+void ws_server_fc_input_format() {
+    ws_server_fc_input[THRUST] = map(ws_server_fc_input[THRUST], -100, 100, 1000, 2000);
+    ws_server_fc_input[ROLL] = map(ws_server_fc_input[ROLL], -100, 100, -10, 10);
+    ws_server_fc_input[PITCH] = map(ws_server_fc_input[PITCH], -100, 100, -10, 10);
+    ws_server_fc_input[YAW] = map(ws_server_fc_input[YAW], -100, 100, -10, 10);
 }

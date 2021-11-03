@@ -17,6 +17,8 @@
 
 static const char* TAG = "wss:ws_server";
 
+int ws_server_fc_input[4] = {0, 0, 0, 0};
+
 void ws_event_handler(AsyncWebSocket* server, AsyncWebSocketClient* client, AwsEventType type, void* arg, uint8_t* data, size_t len);
 
 #endif  //ESPWSS_WS_SERVER_INTERNAL_H

@@ -7,10 +7,12 @@
 #ifndef ESPWSS_MAIN_INTERNAL_H
 #define ESPWSS_MAIN_INTERNAL_H
 
+#include <Arduino.h>
+#include <wifi_connect.h>
+#include <ws_server.h>
 #include <sensor_data.h>
+#include <motor_input.h>
 
 static const char* TAG = "wss:main";
-
-#define SERIAL_BAUD_RATE 115200
 
 #endif  //ESPWSS_MAIN_INTERNAL_H

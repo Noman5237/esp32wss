@@ -7,8 +7,6 @@
 #ifndef ESPWSS_SENSOR_DATA_INPUT_INTERNAL_H
 #define ESPWSS_SENSOR_DATA_INPUT_INTERNAL_H
 
-#include <Adafruit_MPU6050.h>
-#include <Adafruit_Sensor.h>
 #include <Wire.h>
 #include <utils.h>
 
@@ -16,10 +14,21 @@
 
 static const char* TAG = "wss:sensor_data";
 
+float sensor_data_gyro_raw[3] = {0, 0, 0};
+float sensor_data_gyro_offset[3] = {0, 0, 0};
+
+float sensor_data_acc_raw[3] = {0, 0, 0};
+float sensor_data_acc_offset[3] = {0, 0, 0};
+
+float sensor_data_gyro_angle[3] = {0, 0, 0};
+float sensor_data_acc_angle[3] = {0, 0, 0};
+
 void sensor_data_setup_mpu6050();
 
 void sensor_data_calibrate_mpu6050();
 
 void sensor_data_read_mpu6050();
+
+void sensor_data_format_mpu6050();
 
 #endif  //ESPWSS_SENSOR_DATA_INTERNAL_H
